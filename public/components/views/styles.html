@@ -1,0 +1,26 @@
+<h2 class="text-center">{{ styles[0].category.name }}</h2>
+<div class="row">
+    <div ng-repeat="style in styles track by $index">
+        <div class="col-sm-4">
+            <h4 class="text-center"><a ng-click="style.current = !style.current">{{ style.shortName }}</a></h4>
+        </div>
+        <div class="style-info col-sm-10 col-sm-offset-1" ng-show="style.current">
+            <h2 class="text-center">{{ style.name }}</h2>
+            <div class="row">
+                <div class="col-xs-4 text-center">
+                        <p>ABV Max: {{ style.abvMax }}</p>
+                        <p>ABV Min: {{ style.abvMin }}</p>
+                </div>
+                <div class="col-xs-4 text-center">
+                        <p>IBU Max: {{ style.ibuMax }}</p>
+                        <p>IBU Min: {{ style.ibuMin }}</p>
+                </div>
+                <div class="col-xs-4 text-center">
+                        <p>SRM Max: {{ style.srmMax }}</p>
+                        <p>SRM Min: {{ style.srmMin }}</p>
+                </div>
+            </div>
+            <p class="text-center">{{ style.description }}</p>
+        </div>
+    </div>
+</div>
