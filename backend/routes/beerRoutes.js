@@ -11,7 +11,7 @@ beerRoutes.route("/")
     })
     .post(function (req, res) {
         //var beer = new Beer(req.body);
-        Beer.(req.body).then(function (err) {
+        Beer.create(req.body).then(function (err) {
             if (err) return res.status(500).send(err);
             res.status(201).send("completed");
         });

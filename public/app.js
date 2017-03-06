@@ -26,5 +26,9 @@ angular.module("myApp", ["ngRoute"])
             templateUrl: "components/views/styles.html",
             controller: "styleController"
         })
+        .when("/sign-in", {
+            templateUrl: "components/views/sign-in.html",
+            controller: "signInController"
+        })
         .otherwise("/home")
 }]);

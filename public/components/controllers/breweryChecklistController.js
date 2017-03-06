@@ -2,6 +2,8 @@ angular.module("myApp")
 
 .controller("breweryChecklistController", ["$scope", "BeerService", "BreweryService", "$routeParams", function ($scope, BeerService, BreweryService, $routeParams) {
 
+    //$scope.getUser
+
     $scope.getBeers = function (id) {
         BeerService.getBeers(id)
             .then(function (response) {
@@ -16,13 +18,17 @@ angular.module("myApp")
             })
     };
 
+
+    ////////////////////////////////-->
     $scope.checkOff = function (index) {
         BeerService.updateBeer($scope.beers[index])
     };
 
+
+    /////////////////////////////////-->
     $scope.addToBucket = function (index) {
-        $scope.beers[index].inBucket = true;
-        BeerService.updateBeer($scope.beers[index])
+        $scope.user.beersInBucket.push($scope.beers[index]._id);
+        UserService.updateUser($scope.user)
     };
 
     $scope.getBeers($routeParams.id);

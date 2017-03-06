@@ -10,13 +10,15 @@ angular.module("myApp")
             })
     }
 
-    this.updateBeer = function (beer) {
-        return $http.put("/beers/" + beer._id, beer)
-            .then(function (response) {
-                return response;
-            })
-    }
+    // this.updateBeer = function (beer) {
+    //     return $http.put("/beers/" + beer._id, beer)
+    //         .then(function (response) {
+    //             return response;
+    //         })
+    // }
 
+
+    /////////////////////////-->
     this.getBucketBeers = function () {
         return $http.get("/beers" + "?inBucket=true")
             .then(function (response) {

@@ -8,14 +8,19 @@ var BeerSchema = new Schema({
         unique: true
     },
     breweryId: String,
-    inBucket: {
-        type: Boolean,
-        default: false
-    },
-    haveHad: {
-        type: Boolean,
-        default: false
-    },
+    reviews: [{
+        user: {
+            type: Schema.Types.ObjectId,
+            required: true,
+            unique: true
+        },
+        score: {
+            type: Number,
+            required: true
+        },
+        review: String
+
+    }],
     name: String,
     nameDisplay: String,
     description: String,

@@ -9,6 +9,8 @@ angular.module("myApp")
             })
     };
 
+
+    //////////////////////////////-->
     $scope.removeFromBucket = function (index) {
         $scope.beers[index].inBucket = false;
         BeerService.updateBeer($scope.beers[index])
