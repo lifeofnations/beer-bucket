@@ -1,17 +1,94 @@
 .side-bar {
     height: 100vh;
-    background-color: purple;
+    background-color: transparent;
+    position: fixed;
+    left: -67%;
+    transition-duration: .5s;
+    z-index: 10;
+    background-image: url(https://img.clipartfest.com/3d589168b7a54696f99ec491813baace_related-posts-beer-pilsner-clipart-with-transparent-background_334-500.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+
+
+}
+
+.side-bar-navs {
+    position: relative;
+    top: 20%;
+    right: 2%;
+}
+
+.side-bar-navs * {
+    color: white;
+}
+
+* {
+    color: whitesmoke;
+}
+
+button {
+    background-color: black;
+    border-radius: 10px;
+}
+
+img {
+    border-radius: 20px;
+}
+
+body {
+    background-image: url("images/dark_wood_@2X.png");
+    background-attachment: fixed;
+    background-position: center center;
+}
+
+.side-bar:focus, .side-bar:hover {
+    left: 0;
 }
 
 ul {
     list-style: none;
 }
 
-.brew-img {
+.brew-img, .beer-label {
     width: 100%;
+    height: auto;
 }
 
-.brew-display {
-    background-color: whitesmoke;
-    margin-top: 30px;
+.brew-display, .beer-div{
+    margin-top: 15px;
+    margin-bottom: 30px;
+}
+
+.beer-font {
+    color: darkgray;
+}
+
+.beer-background {
+    border-radius: 20px;
+}
+
+.home-img {
+    position: relative;
+    bottom: 0px;
+}
+
+.page-header {
+    background-image: url(http://thirstyquaker.com/wp/wp-content/uploads/hops-e1399592002313-1024x204.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    border: 1px solid black;
+    border-radius: 10px;
+
+}
+
+@media (min-width: 768px) {
+    .side-bar {
+        left: 0;
+    }
+
+    .beer-div {
+        height: 350px;
+    }
 }

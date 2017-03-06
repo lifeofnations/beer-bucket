@@ -4,16 +4,16 @@ var Beer = require("../models/beerSchema");
 
 beerRoutes.route("/")
     .get(function (req, res) {
-        Beer.find(function (err, beers) {
+        Beer.find(req.query, function (err, beers) {
             if (err) return res.status(500).send(err);
             res.send(beers);
         });
     })
     .post(function (req, res) {
-        var beer = new Beer(req.body);
-        beer.save(function (err) {
+        //var beer = new Beer(req.body);
+        Beer.(req.body).then(function (err) {
             if (err) return res.status(500).send(err);
-            res.status(201).send(beer);
+            res.status(201).send("completed");
         });
     });
 

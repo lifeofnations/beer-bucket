@@ -4,7 +4,7 @@ var Brewery = require("../models/brewerySchema");
 
 breweryRoutes.route("/")
     .get(function (req, res) {
-        Brewery.find(function (err, brewerys) {
+        Brewery.find(req.query, function (err, brewerys) {
             if (err) return res.status(500).send(err);
             res.send(brewerys);
         });

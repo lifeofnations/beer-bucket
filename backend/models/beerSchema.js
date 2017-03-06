@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 var BeerSchema = new Schema({
     id: {
         type: String,
-        required: true,
+        required: false,
         unique: true
     },
     breweryId: String,
@@ -12,10 +12,20 @@ var BeerSchema = new Schema({
         type: Boolean,
         default: false
     },
+    haveHad: {
+        type: Boolean,
+        default: false
+    },
     name: String,
     nameDisplay: String,
     description: String,
     abv: String,
+    ibu: String,
+    srm: {
+        id: Number,
+        name: String,
+        hex: String
+    },
     glasswareId: Number,
     availableId: Number,
     styleId: Number,

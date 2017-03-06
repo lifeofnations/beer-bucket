@@ -15,6 +15,7 @@ angular.module("myApp")
         $scope.addBrewery = function (name) {
             BreweryService.getBrewery(name)
                 .then(function (response) {
+                    console.log(response);
                     $scope.getBreweries();
                 })
         };

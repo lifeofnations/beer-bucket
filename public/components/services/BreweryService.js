@@ -25,6 +25,13 @@ angular.module("myApp")
                 })
         };
 
+        this.displayBrewery = function (id) {
+            return $http.get("/brewery?id=" + id)
+                .then(function (response) {
+                    return response.data
+                })
+        }
+
         this.getBrewery = function (name) {
             return $http.get("/brewerydb/" + name)
                 .then(function (response) {
@@ -50,9 +57,17 @@ angular.module("myApp")
                 .then(function (response) {
                         for (var i = 0; i < response.data.data.length; i++) {
                             response.data.data[i].breweryId = self.id;
-                            $http.post("/beers", response.data.data[i])
                         }
-                        return console.log("did it!")
+                        while (response.data.data.length) {
+                            if (response.data.data.length <= 20) {
+                                $http.post("/beers", response.data.data.splice(0, response.data.data.length))
+                            } else {
+                                var toPost = response.data.data.splice(0, 20);
+                                $http.post("/beers", toPost)
+                            }
+                        }
+                        return ('success')
+
                     })
         };
 

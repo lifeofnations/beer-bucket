@@ -1,0 +1,50 @@
+<div class="row">
+    <div>
+        <h1 class="text-center page-header">{{ brewery.name }}</h1>
+    </div>
+    <div ng-repeat="beer in beers track by $index">
+        <div class="col-sm-4 beer-div">
+            <h4 class="text-center">{{ beer.name }}</h4>
+            <a ng-click="beer.active = !beer.active"><img class="beer-label text-center"
+                                                          src="{{ beer.labels.large || brewery.images.squareMedium }}"
+                                                          alt="oh noes"></a>
+            <button ng-hide="beer.inBucket" ng-click="addToBucket($index)">Add to Bucket</button>
+            <label ng-show="beer.inBucket">In your bucket!</label>
+            <div class="pull-right">
+                <label for="{{beer.id}}">Had it!</label>
+                <input type="checkbox" id="{{beer.id}}" ng-model="beer.haveHad" ng-change="checkOff($index)">
+            </div>
+        </div>
+        <div class="col-xs-12 beer-background" ng-if="beer.active" ng-style="{'background-color': '#' + beer.srm.hex}">
+            <div class="row">
+                <div class="col-sm-4 col-sm-offset-4 beer-div">
+                    <h4 class="text-center">{{ beer.name }}</h4>
+                    <a ng-click="beer.active = !beer.active"><img class="beer-label text-center"
+                                                                  src="{{ beer.labels.large || brewery.images.squareMedium }}"
+                                                                  alt="oh noes"></a>
+                    <button ng-hide="beer.inBucket" ng-click="addToBucket($index)">Add to Bucket</button>
+                    <label ng-show="beer.inBucket">In your bucket!</label>
+                    <div class="pull-right">
+                        <label for="{{beer.id}}">Had it!</label>
+                        <input type="checkbox" id="{{beer.id}}" ng-model="beer.haveHad" ng-change="checkOff($index)">
+                    </div>
+                </div>
+                <div class="col-xs-12 beer-description">
+                    <h2 class="text-center">{{ beer.nameDisplay }}</h2>
+                    <p class="text-center">{{ beer.description }}</p>
+                    <div class="col-xs-4">
+                        <p class="text-center" ng-show="beer.abv">ABV: {{beer.abv}}</p>
+                        <p class="text-center" ng-show="beer.ibu">IBU:{{beer.ibu}}</p>
+                    </div>
+                    <div class="col-xs-4">
+                        <p class="text-center" ng-show="beer.originalGravity">Gravity: {{beer.originalGravity}}</p>
+                        <p class="text-center" ng-show="beer.srm">SRM: {{beer.srm.name}}</p>
+                    </div>
+                    <div class="col-xs-4">
+                        <p class="text-center">{{beer.available.description}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
