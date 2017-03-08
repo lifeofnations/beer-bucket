@@ -9,7 +9,7 @@ angular.module("myApp")
             .then((response) => {
                 return this.categories = response.data;
             })
-    }
+    };
     
     this.getStyles = function (categoryId) {
         return $http.get("/categories/" + categoryId)

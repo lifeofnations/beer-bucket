@@ -9,9 +9,9 @@
 </div>
 <div class="row">
     <div ng-repeat="brewery in breweries track by $index" class="col-sm-4 brew-display">
-        <h4 class="text-center"><a href="{{ brewery.website }}">{{ brewery.name }}</a></h4>
+        <h4 class="text-center"><a href="{{ brewery.website }}" target="_blank""">{{ brewery.name }}</a></h4>
         <div class="text-center">
-            <a href="#/brewery-list/{{ brewery.id }}" target="_blank"><img class="brew-img" src="{{ brewery.images.squareMedium }}"
+            <a href="#/brewery-list/{{ brewery.id }}"><img class="brew-img" src="{{ brewery.images.squareMedium }}"
                                                            alt=""></a>
         </div>
         <div class="text-center">

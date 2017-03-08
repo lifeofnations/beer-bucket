@@ -1,24 +1,19 @@
 angular.module("myApp")
 
-.controller("beerBucketController", ["$scope", "BeerService", function ($scope, BeerService) {
+.controller("beerBucketController", ["$scope", "BeerService", "UserService", function ($scope, BeerService, UserService) {
 
-    $scope.getBeers = function () {
-        BeerService.getBucketBeers()
-            .then(function (response) {
-                $scope.beers = response;
-            })
-    };
+    $scope.user = UserService.getUser();
+    console.log($scope.user);
 
-
-    //////////////////////////////-->
     $scope.removeFromBucket = function (index) {
-        $scope.beers[index].inBucket = false;
-        BeerService.updateBeer($scope.beers[index])
-            .then(function (response) {
-                $scope.getBeers();
-            })
+        $scope.user.beersInBucket.splice(index, 1);
+        UserService.updateUser($scope.user)
     };
 
-    $scope.getBeers();
+    $scope.beerComplete = function (index) {
+        $scope.user.completedBeers.push($scope.user.beersInBucket[index]);
+        $scope.user.beersInBucket.splice(index, 1);
+        UserService.updateUser($scope.user);
+    };
 
 }]);

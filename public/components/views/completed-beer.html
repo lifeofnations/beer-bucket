@@ -1,16 +1,12 @@
 <div class="row">
-    <h1 class="text-center page-header">Your Beer Bucket</h1>
-    <div ng-repeat="beer in user.beersInBucket track by $index" class="beer">
+    <h1 class="text-center page-header">Completed Beers</h1>
+    <div ng-repeat="beer in user.completedBeers track by $index" class="beer">
         <div class="col-sm-4 beer-div" ng-hide="beer.active">
             <h4 class="text-center">{{ beer.name }}</h4>
             <a ng-click="beer.active = !beer.active"><img class="beer-label text-center"
                                                           src="{{ beer.labels.large || brewery.images.squareMedium }}"
                                                           alt="oh noes"></a>
-            <button ng-click="removeFromBucket($index)">Remove from Bucket</button>
-
-            <div class="pull-right">
-                <button type="button" ng-click="beerComplete($index)">Success!!!</button>
-            </div>
+            <button ng-click="removeFromCompleted($index)">Whoops!</button>
         </div>
         <div class="col-xs-12" ng-if="beer.active" ng-style="{'background-color': '#' + beer.srm.hex}">
             <div class="row">
@@ -19,10 +15,8 @@
                     <a ng-click="beer.active = !beer.active"><img class="beer-label text-center"
                                                                   src="{{ beer.labels.large || brewery.images.squareMedium }}"
                                                                   alt="oh noes"></a>
-                    <button class="btn btn-sm" ng-click="removeFromBucket($index)">Remove from Bucket</button>
-                    <div class="pull-right">
-                        <button type="button" ng-click="beerComplete($index)">Success!!!</button>
-                    </div>
+                    <button ng-click="removeFromCompleted($index)">Whoops!</button>
+
                 </div>
                 <div class="col-xs-12 beer-description">
                     <h2 class="text-center">{{ beer.nameDisplay }}</h2>

@@ -19,13 +19,17 @@ authRoutes.route("/signup")
 
 authRoutes.route("/login")
     .post(function (req, res) {
-        User.findOne({userName: req.body.userName}, function (err, user) {
+        User.findOne({userName: req.body.userName}).populate("beersInBucket").populate("completedBeers").exec(function (err, user) {
             if (err) return res.status(500).send(err);
-            if (!user || user.password !== req.body.password) {
+            if (!user) {
                 return res.status(401).send({success: false, message: "Invalid username or password."})
             }
-            var token = jwt.sign(user.toObject(), config.secret, {expiresIn: "1h"});
-            res.send({success: true, token: token, user: user.toObject(), message: "Welcome Back!"});
+            user.checkPassword(req.body.password, function (err, isMatch) {
+                if (err) return res.status(500).send(err);
+                if (!isMatch) return res.status(401).send({success: false, message: "Invalid username or password."});
+                var token = jwt.sign(user.toObject(), config.secret, {expiresIn: "1h"});
+                res.send({success: true, token: token, user: user.withoutPassword(), message: "Welcome Back!"});
+            });
         })
     });
 

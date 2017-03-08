@@ -15,7 +15,7 @@
 
 .side-bar-navs {
     position: relative;
-    top: 20%;
+    top: 19%;
     right: 2%;
 }
 
@@ -30,6 +30,10 @@
 button {
     background-color: black;
     border-radius: 10px;
+}
+
+.form-control {
+    background-color: black;
 }
 
 img {
@@ -55,7 +59,7 @@ ul {
     height: auto;
 }
 
-.brew-display, .beer-div{
+.brew-display, .beer-div {
     margin-top: 15px;
     margin-bottom: 30px;
 }

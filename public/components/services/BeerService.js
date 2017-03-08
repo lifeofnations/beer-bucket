@@ -4,14 +4,14 @@ angular.module("myApp")
     var self = this;
 
     this.getBeers = function (id) {
-        return $http.get("/beers" + "?breweryId=" + id)
+        return $http.get("/api/beers" + "?breweryId=" + id)
             .then(function (response) {
                 return response.data;
             })
     }
 
     // this.updateBeer = function (beer) {
-    //     return $http.put("/beers/" + beer._id, beer)
+    //     return $http.put("/api/beers/" + beer._id, beer)
     //         .then(function (response) {
     //             return response;
     //         })
@@ -19,12 +19,12 @@ angular.module("myApp")
 
 
     /////////////////////////-->
-    this.getBucketBeers = function () {
-        return $http.get("/beers" + "?inBucket=true")
-            .then(function (response) {
-                return response.data
-            })
-    }
+    // this.getBucketBeers = function () {
+    //     return $http.get("/api/beers" + "?inBucket=true")
+    //         .then(function (response) {
+    //             return response.data
+    //         })
+    // }
 
 
 }]);

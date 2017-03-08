@@ -21,7 +21,7 @@ app.use("/api/brewery", require("./backend/routes/breweryRoutes"));
 app.use("/api/brewerydb", require("./backend/routes/brewerydbRoute"));
 app.use("/categories", require("./backend/routes/categoryRoutes"));
 app.use("/api/beerdb", require("./backend/routes/beerdbRoute"));
-
+app.use("/api/user", require("./backend/routes/userRoutes"));
 
 
 

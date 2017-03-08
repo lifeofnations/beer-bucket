@@ -2,7 +2,6 @@ angular.module("myApp")
 
     .service("BreweryService", ["$http", function ($http) {
         var self = this;
-        var wentApi = false;
         this.brewerys = [];
         this.brewery = {};
 
@@ -19,21 +18,21 @@ angular.module("myApp")
         // };
 
         this.getBreweries = function () {
-            return $http.get("/brewery")
+            return $http.get("/api/brewery")
                 .then(function (response) {
                     return response.data
                 })
         };
 
         this.displayBrewery = function (id) {
-            return $http.get("/brewery?id=" + id)
+            return $http.get("/api/brewery?id=" + id)
                 .then(function (response) {
                     return response.data
                 })
         }
 
         this.getBrewery = function (name) {
-            return $http.get("/brewerydb/" + name)
+            return $http.get("/api/brewerydb/" + name)
                 .then(function (response) {
                         console.log(response.data.data);
                         return response.data.data[0];
@@ -42,14 +41,14 @@ angular.module("myApp")
                         console.log("error");
                     })
                 .then(function (response) {
-                        return $http.post("/brewery", response)
+                        return $http.post("/api/brewery", response)
                     },
                     function (response) {
                         console.log("error")
                     })
                 .then(function (response) {
                         self.id = response.data.id;
-                        return $http.get("/beerdb/" + response.data.id)
+                        return $http.get("/api/beerdb/" + response.data.id)
                     },
                     function (response) {
                         console.log("getting beer error")
@@ -58,12 +57,15 @@ angular.module("myApp")
                         for (var i = 0; i < response.data.data.length; i++) {
                             response.data.data[i].breweryId = self.id;
                         }
+                        console.log(response.data.data);
                         while (response.data.data.length) {
                             if (response.data.data.length <= 20) {
-                                $http.post("/beers", response.data.data.splice(0, response.data.data.length))
+                                console.log(response.data.data, "last");
+                                $http.post("/api/beers", response.data.data.splice(0, response.data.data.length))
                             } else {
                                 var toPost = response.data.data.splice(0, 20);
-                                $http.post("/beers", toPost)
+                                console.log(toPost);
+                                $http.post("/api/beers", toPost)
                             }
                         }
                         return ('success')
@@ -72,7 +74,7 @@ angular.module("myApp")
         };
 
         this.removeBrewery = function (id) {
-            return $http.delete("/brewery/" + id)
+            return $http.delete("/api/brewery/" + id)
                     .then(response => response.data)
         }
 

@@ -1,4 +1,4 @@
-angular.module("myApp", ["ngRoute"])
+angular.module("myApp", ["ngRoute", "myApp.Auth"])
 
 .config(["$routeProvider", function ($routeProvider) {
     $routeProvider
@@ -26,9 +26,9 @@ angular.module("myApp", ["ngRoute"])
             templateUrl: "components/views/styles.html",
             controller: "styleController"
         })
-        .when("/sign-in", {
-            templateUrl: "components/views/sign-in.html",
-            controller: "signInController"
+        .when("/your-completed-beers", {
+            templateUrl: "components/views/completed-beer.html",
+            controller: "completedController"
         })
         .otherwise("/home")
 }]);

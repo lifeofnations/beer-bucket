@@ -3,14 +3,14 @@
         <h1 class="text-center page-header">{{ brewery.name }}</h1>
     </div>
     <div ng-repeat="beer in beers track by $index">
-        <div class="col-sm-4 beer-div">
+        <div class="col-sm-4 beer-div" ng-if="!beer.active">
             <h4 class="text-center">{{ beer.name }}</h4>
             <a ng-click="beer.active = !beer.active"><img class="beer-label text-center"
                                                           src="{{ beer.labels.large || brewery.images.squareMedium }}"
                                                           alt="oh noes"></a>
-            <button ng-if="user.beersInBucket.indexOf(beer._id < 0" ng-click="addToBucket($index)">Add to Bucket</button>
-            <label ng-if="user.beersInBucket.indexOf(beer._id >= 0 && showInBucket">In your bucket!</label>
-            <label ng-if="user.completedBeers.indexOf(beer._id) >= 0 && showCompleted">You Have had tried this one already.</label>
+            <button ng-if="!beer.inBucket && !beer.isCompleted" ng-click="addToBucket($index)">Add to Bucket</button>
+            <label ng-if="beer.inBucket">In your bucket!</label>
+            <label ng-if="beer.isCompleted">You have had tried this one already.</label>
         </div>
         <div class="col-xs-12 beer-background" ng-if="beer.active" ng-style="{'background-color': '#' + beer.srm.hex}">
             <div class="row">
@@ -19,12 +19,9 @@
                     <a ng-click="beer.active = !beer.active"><img class="beer-label text-center"
                                                                   src="{{ beer.labels.large || brewery.images.squareMedium }}"
                                                                   alt="oh noes"></a>
-                    <button ng-hide="beer.inBucket" ng-click="addToBucket($index)">Add to Bucket</button>
-                    <label ng-show="beer.inBucket">In your bucket!</label>
-                    <div class="pull-right">
-                        <label for="{{beer.id}}">Had it!</label>
-                        <input type="checkbox" id="{{beer.id}}" ng-model="beer.haveHad" ng-change="checkOff($index)">
-                    </div>
+                    <button ng-if="!beer.inBucket && !beer.isCompleted" ng-click="addToBucket($index)">Add to Bucket</button>
+                    <label ng-if="beer.inBucket">In your bucket!</label>
+                    <label ng-if="beer.isCompleted">You have tried this one already!</label>
                 </div>
                 <div class="col-xs-12 beer-description">
                     <h2 class="text-center">{{ beer.nameDisplay }}</h2>

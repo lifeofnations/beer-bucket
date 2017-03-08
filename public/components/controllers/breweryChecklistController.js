@@ -1,36 +1,64 @@
 angular.module("myApp")
 
-.controller("breweryChecklistController", ["$scope", "BeerService", "BreweryService", "$routeParams", function ($scope, BeerService, BreweryService, $routeParams) {
+.controller("breweryChecklistController", ["$scope", "BeerService", "BreweryService", "UserService", "$routeParams", function ($scope, BeerService, BreweryService, UserService, $routeParams) {
 
-    //$scope.getUser
+    $scope.user = UserService.getUser();
+    console.log($scope.user);
+    $scope.bucket = $scope.user.beersInBucket.toString();
+    console.log($scope.bucket);
 
     $scope.getBeers = function (id) {
         BeerService.getBeers(id)
             .then(function (response) {
+                //console.log(response);
+                for (var i = 0; i < response.length; i++) {
+                    if ($scope.user.beersInBucket.findIndex((elm) => elm._id === response[i]._id) >= 0) {
+                        response[i].inBucket = true;
+                    } else {
+                        response[i].inBucket = false;
+                    }
+                    if ($scope.user.completedBeers.findIndex((elm) => elm._id === response[i]._id) >= 0) {
+                        response[i].isCompleted = true;
+                    } else {
+                        response[i].isCompleted = false;
+                    }
+                }
                 $scope.beers = response;
                 $scope.beers = response.sort((a,b) => a.availableId - b.availableId);
-                console.log(response);
                 return BreweryService.displayBrewery(id)
             })
             .then(function (response) {
-                $scope.brewery = response[0];
-                console.log($scope.brewery);
+                return $scope.brewery = response[0];
+                //console.log($scope.brewery);
             })
     };
 
-
-    ////////////////////////////////-->
-    $scope.checkOff = function (index) {
-        BeerService.updateBeer($scope.beers[index])
+    $scope.bucketChecker = function (id) {
+        return $scope.user.beersInBucket.findIndex(elm => elm._id === id) < 0;
     };
 
+    $scope.completedChecker = function (id) {
+        return $scope.user.completedBeers.findIndex(elm => elm._id === id) >= 0;
+    };
 
     /////////////////////////////////-->
     $scope.addToBucket = function (index) {
-        $scope.user.beersInBucket.push($scope.beers[index]._id);
-        UserService.updateUser($scope.user)
+        $scope.user.beersInBucket.push($scope.beers[index]);
+        UserService.updateUser($scope.user);
+        $scope.beers[index].inBucket = true;
+        console.log($scope.user);
     };
 
     $scope.getBeers($routeParams.id);
+        // .then(function () {
+        //     for (var i = 0; i < $scope.beers.length) {
+        //         if ($scope.user.beersInBucket.findIndex(elm => elm._id === $scope.beers[i]._id)) {
+        //             $scope.beers[i].inBucket = true;
+        //         }
+        //         if ($scope.user.beersCompleted.findIndex(elm => elm._id === $scope.beers[i]._id)) {
+        //             $scope.beers[i].isCompleted = true;
+        //         }
+        //     }
+        // });
 
 }]);

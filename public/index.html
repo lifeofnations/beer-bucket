@@ -15,41 +15,45 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-3 col-xs-9 side-bar">
-            <h2 class="text-center"></h2>
-            <div class="side-bar-navs">
-                <a href="#/home"><h2 class="text-center">Beer Bucket</h2></a>
-                <h4 class="text-center"><a href="#/your-beer-bucket">Your Beer Bucket</a></h4>
-                <h4 class="text-center"><a href="#/brewery">Your Brewerys</a></h4>
-                <h4 class="text-center"><a href="#/beer-categories">Beer Info</a></h4>
-                <h5 class="text-center"><a href="#/sign-in">Sign In</a></h5>
-            </div>
-        </div>
+            <mynav></mynav>
         <div class="col-sm-9 col-sm-offset-3">
             <ng-view></ng-view>
         </div>
     </div>
 </div>
 
-
+<!--third party-->
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
 
+<!--main app-->
 <script src="app.js"></script>
-
+<!--main directives-->
+<script src="components/directives/navDirective.js"></script>
+<!--main controllers-->
 <script src="components/controllers/homeController.js"></script>
 <script src="components/controllers/beerBucketController.js"></script>
 <script src="components/controllers/breweryController.js"></script>
 <script src="components/controllers/breweryChecklistController.js"></script>
 <script src="components/controllers/categoryController.js"></script>
 <script src="components/controllers/styleController.js"></script>
-<script src="components/controllers/signInController.js"></script>
-
-
+<script src="components/controllers/completedController.js"></script>
+<!--main services-->
 <script src="components/services/BeerService.js"></script>
 <script src="components/services/BreweryService.js"></script>
 <script src="components/services/CategoryService.js"></script>
-<script src="components/services/UserService.js"></script>
+
+<!--auth app-->
+<script src="components/auth/auth.js"></script>
+<!--auth controllers-->
+<script src="components/auth/components/controllers/loginController.js"></script>
+<script src="components/auth/components/controllers/signupController.js"></script>
+<script src="components/auth/components/controllers/logoutController.js"></script>
+<!--auth services-->
+<script src="components/auth/components/services/UserService.js"></script>
+<script src="components/auth/components/services/TokenService.js"></script>
+<script src="components/auth/components/services/AuthInterceptor.js"></script>
 
 </body>
 </html>
