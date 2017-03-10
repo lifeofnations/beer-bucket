@@ -7,6 +7,7 @@
         <h4 class="text-center"><a href="#/brewery">Brewerys</a></h4>
         <h4 class="text-center"><a href="#/beer-categories">Beer Info</a></h4>
         <h5 class="text-center" ng-if="!userService.isAuthenticated()"><a href="#/login">log in</a></h5>
+        <h5 class="text-center" ng-if="userService.isAuthenticated()"><a href="#/profile">profile</a></h5>
         <h5 class="text-center" ng-if="userService.isAuthenticated()"><a href="#/logout">log out</a></h5>
     </div>
 </div>

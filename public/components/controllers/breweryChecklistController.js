@@ -44,7 +44,7 @@ angular.module("myApp")
     /////////////////////////////////-->
     $scope.addToBucket = function (index) {
         $scope.user.beersInBucket.push($scope.beers[index]);
-        UserService.updateUser($scope.user);
+        UserService.updateBeers($scope.user);
         $scope.beers[index].inBucket = true;
         console.log($scope.user);
     };

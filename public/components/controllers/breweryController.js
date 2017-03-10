@@ -16,6 +16,7 @@ angular.module("myApp")
             BreweryService.getBrewery(name)
                 .then(function (response) {
                     console.log(response);
+                    $scope.name = "";
                     $scope.getBreweries();
                 })
         };

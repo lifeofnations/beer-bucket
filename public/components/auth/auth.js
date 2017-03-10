@@ -14,6 +14,10 @@ angular.module("myApp.Auth", ["ngRoute", "ngStorage"])
         .when("/logout", {
             template: "",
             controller: "logoutController"
+        })
+        .when("/profile", {
+            templateUrl: "components/auth/components/views/profile.html",
+            controller: "profileController"
         });
 
     $httpProvider.interceptors.push("AuthInterceptor");

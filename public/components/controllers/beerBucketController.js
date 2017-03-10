@@ -7,13 +7,13 @@ angular.module("myApp")
 
     $scope.removeFromBucket = function (index) {
         $scope.user.beersInBucket.splice(index, 1);
-        UserService.updateUser($scope.user)
+        UserService.updateBeers($scope.user)
     };
 
     $scope.beerComplete = function (index) {
         $scope.user.completedBeers.push($scope.user.beersInBucket[index]);
         $scope.user.beersInBucket.splice(index, 1);
-        UserService.updateUser($scope.user);
+        UserService.updateBeers($scope.user);
     };
 
 }]);

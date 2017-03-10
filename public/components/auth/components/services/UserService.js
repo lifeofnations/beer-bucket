@@ -25,6 +25,10 @@ angular.module("myApp.Auth")
             // })
     };
 
+    this.updateBeers = function (user) {
+        return $http.put("api/user/add", user)
+    }
+
     this.addUser = function (newUser) {
         return $http.post("/auth/signup", newUser)
     };
