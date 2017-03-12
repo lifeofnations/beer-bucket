@@ -22,7 +22,7 @@ userRoutes.route("/add")
     .put(function (req, res) {
         User.findOneAndUpdate({_id: req.body._id}, req.body, {new: true}, function (err, updated) {
             if (err) res.status(500).send(err);
-            res.send({success: true, message: "added stuff": updated: updated})
+            res.send({success: true, message: "added stuff", updated: updated})
         });
     });
 
