@@ -8,11 +8,11 @@ angular.module("myApp.Auth")
         } else {
             UserService.addUser(user)
                 .then(function (response) {
-                    UserService.logInUser(response.data.user);
+                    //UserService.logInUser(response.data.user);
                     $location.path("/your-beer-bucket");
                 },
                 function (response) {
-                    console.log(response + "eww!");
+                    console.log(response.message + " eww!");
                 })
         }
     }
