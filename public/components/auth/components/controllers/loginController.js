@@ -6,6 +6,9 @@ angular.module("myApp.Auth")
             UserService.logInUser(user)
                 .then(function (response) {
                     $location.path("/your-beer-bucket");
+                },
+                function (response) {
+                    alert(response.data.message);
                 })
         }
 

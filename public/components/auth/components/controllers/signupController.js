@@ -12,7 +12,7 @@ angular.module("myApp.Auth")
                     $location.path("/your-beer-bucket");
                 },
                 function (response) {
-                    console.log(response.message + " eww!");
+                    alert(response.data.message);
                 })
         }
     }

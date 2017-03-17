@@ -6,7 +6,7 @@ var User = require("../models/userSchema");
 
 authRoutes.route("/signup")
     .post(function (req, res) {
-        User.find({userName: req.body.userName}, function (err, existingUser) {
+        User.find({userName: req.body.userName.toLowerCase()}, function (err, existingUser) {
             if (err) return res.status(500).send(err);
             if (existingUser.length) return res.send({success: false, message: "User already exists"});
             var newUser = new User(req.body);
@@ -19,7 +19,7 @@ authRoutes.route("/signup")
 
 authRoutes.route("/login")
     .post(function (req, res) {
-        User.findOne({userName: req.body.userName}).populate("beersInBucket").populate("completedBeers").exec(function (err, user) {
+        User.findOne({userName: req.body.userName.toLowerCase()}).populate("beersInBucket").populate("completedBeers").exec(function (err, user) {
             if (err) return res.status(500).send(err);
             if (!user) {
                 return res.status(401).send({success: false, message: "Invalid username or password."})
